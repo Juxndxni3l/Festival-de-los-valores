@@ -1,1 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Fredoka', sans-serif;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.25) 0 3px, transparent 4px),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.2) 0 4px, transparent 5px),
+    linear-gradient(135deg, #6a11cb, #2575fc, #00c6ff);
+
+  background-size: 120px 120px, 180px 180px, cover;
+
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+/* CONTENEDOR PRINCIPAL */
+
+.app {
+  width: 100%;
+  max-width: 650px;
+  text-align: center;
+
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(18px);
+
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 35px;
+
+  padding: 45px 30px;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* TÍTULO */
+
+h1 {
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  font-weight: 700;
+
+  text-shadow:
+    0 5px 0 rgba(0,0,0,0.15),
+    0 10px 25px rgba(0,0,0,0.25);
+
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  margin-bottom: 35px;
+}
+
+/* MENÚ */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* BOTONES */
+
+button {
+  width: 100%;
+  padding: 20px;
+
+  border: none;
+  border-radius: 20px;
+
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  background: white;
+  color: #5424b8;
+
+  box-shadow:
+    0 8px 0 rgba(0,0,0,0.15),
+    0 15px 25px rgba(0,0,0,0.2);
+
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 3px 0 rgba(0,0,0,0.15);
+}
+
+/* PANTALLA */
+
+#pantalla {
+  margin-top: 30px;
+}
+
+/* TARJETAS */
+
+.card {
+  background: rgba(255,255,255,0.95);
+  color: #333;
+
+  border-radius: 25px;
+  padding: 30px;
+
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* CAMPOS */
+
+input {
+  width: 100%;
+  padding: 16px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 15px;
+
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+
+  margin: 10px 0 20px;
+
+  background: #f1f1f1;
+}
+
+/* CÓDIGO DE PARTIDA */
+
+.codigo {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+
+  color: #6a11cb;
+
+  margin: 20px 0;
+}
+
+/* ANIMACIÓN */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app {
+  animation: aparecer 0.7s ease;
+}
+
+/* CELULARES */
+
+@media (max-width: 500px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .app {
+    padding: 35px 20px;
+    border-radius: 28px;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  .subtitulo {
+    font-size: 1.1rem;
+  }
+
+  button {
+    padding: 17px;
+    font-size: 1.1rem;
+  }
+}
