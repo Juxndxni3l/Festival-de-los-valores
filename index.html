@@ -1,119 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>El Festival de los Valores</title>
-<style>
-body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Arial;background:linear-gradient(135deg,#7135d6,#12a8c7);padding:16px}
-.card{background:white;border-radius:25px;padding:28px;max-width:650px;width:100%;text-align:center;box-shadow:0 15px 40px #0004}
-h1{color:#7135d6;font-size:42px;margin:10px 0}h2{font-size:25px}
-input{width:90%;padding:14px;border:2px solid #ddd;border-radius:12px;font-size:18px}
-button{border:0;border-radius:12px;padding:14px 20px;margin:7px;font-size:17px;font-weight:bold;cursor:pointer;background:#7135d6;color:#fff}
-.answers{display:grid;grid-template-columns:1fr 1fr}.answers button{background:#eee;color:#222;min-height:65px}
-.answers button.ok{background:#21a65a;color:white}.answers button.no{background:#d93636;color:white}
-.info{display:flex;justify-content:space-between;font-weight:bold}.hide{display:none}.timer{font-size:22px}
-@media(max-width:500px){h1{font-size:32px}.answers{grid-template-columns:1fr}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Festival de los Valores</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="card">
-<div id="inicio">
-<div style="font-size:55px">🏆</div>
-<h1>EL FESTIVAL<br>DE LOS VALORES</h1>
-<p>🎮 Juego de preguntas y retos</p>
-<input id="nombre" placeholder="Escribe tu nombre">
-<br>
-<button id="btnStart">🎮 COMENZAR</button>
-</div>
 
-<div id="juego" class="hide">
-<div class="info"><span id="num"></span><span>⭐ <span id="puntos">0</span></span><span class="timer">⏱️ <span id="tiempo">15</span></span></div>
-<h2 id="pregunta"></h2>
-<div id="respuestas" class="answers"></div>
-<button id="siguiente" class="hide">Siguiente ➜</button>
-</div>
+  <div class="app">
 
-<div id="final" class="hide">
-<div style="font-size:60px">🎉</div>
-<h1>¡Terminaste!</h1>
-<h2 id="resultado"></h2>
-<p id="mensaje"></p>
-<button onclick="location.reload()">🔄 Volver a jugar</button>
-</div>
-</div>
+    <h1>🏆 Festival de los Valores</h1>
+    <p class="subtitulo">¡Demuestra cuánto sabes!</p>
 
-<script>
-const preguntas=[
-["¿Qué demuestra respeto?",["Escuchar a los demás","Interrumpir","Burlarse","Ignorar"],0],
-["¿Qué significa empatía?",["Ponerse en el lugar de otra persona","Ganar siempre","No escuchar","Excluir"],0],
-["¿Cuál es un acto de solidaridad?",["Ayudar a quien lo necesita","Dejarlo solo","Burlarse","No compartir"],0],
-["¿Qué valor ayuda al trabajo en equipo?",["Cooperación","Egoísmo","Indiferencia","Desprecio"],0],
-["¿Qué demuestra responsabilidad?",["Cumplir nuestros compromisos","Culpar a otros","Ocultar errores","No hacer nada"],0],
-["¿Qué significa ser honesto?",["Decir la verdad","Mentir","Engañar","Copiar"],0]
-];
+    <div class="menu">
 
-let jugador="",i=0,puntos=0,tiempo=15,reloj=null,bloqueado=false;
+      <button onclick="crearPartida()">
+        👑 Crear partida
+      </button>
 
-const $=id=>document.getElementById(id);
+      <button onclick="unirsePartida()">
+        🎮 Unirse a partida
+      </button>
 
-$("btnStart").addEventListener("click",()=>{
- jugador=$("nombre").value.trim()||"Jugador";
- $("inicio").classList.add("hide");
- $("juego").classList.remove("hide");
- mostrar();
-});
+    </div>
 
-function mostrar(){
- bloqueado=false;tiempo=15;
- const q=preguntas[i];
- $("num").textContent=`Pregunta ${i+1}/${preguntas.length}`;
- $("puntos").textContent=puntos;
- $("tiempo").textContent=tiempo;
- $("pregunta").textContent=q[0];
- $("siguiente").classList.add("hide");
- $("respuestas").innerHTML="";
- q[1].forEach((texto,n)=>{
-  const b=document.createElement("button");
-  b.textContent=texto;
-  b.addEventListener("click",()=>responder(n,b));
-  $("respuestas").appendChild(b);
- });
- clearInterval(reloj);
- reloj=setInterval(()=>{
-  tiempo--; $("tiempo").textContent=tiempo;
-  if(tiempo<=0){clearInterval(reloj);responder(-1,null);}
- },1000);
-}
+    <div id="pantalla"></div>
 
-function responder(n,boton){
- if(bloqueado)return;
- bloqueado=true;clearInterval(reloj);
- const correcta=preguntas[i][2];
- [...$("respuestas").children].forEach((b,k)=>{
-  b.disabled=true;
-  if(k===correcta)b.classList.add("ok");
- });
- if(n===correcta){
-  puntos+=100+tiempo*10;
-  boton.classList.add("ok");
- }else if(boton)boton.classList.add("no");
- $("puntos").textContent=puntos;
- $("siguiente").classList.remove("hide");
-}
+  </div>
 
-$("siguiente").addEventListener("click",()=>{
- i++;
- if(i<preguntas.length)mostrar();
- else terminar();
-});
+  <script src="script.js"></script>
 
-function terminar(){
- $("juego").classList.add("hide");
- $("final").classList.remove("hide");
- $("resultado").textContent=`${jugador}: ${puntos} puntos`;
- $("mensaje").textContent=puntos>=700?"🌟 ¡Excelente!":puntos>=400?"👏 ¡Muy bien!":"💪 ¡Buen intento! Lo importante es practicar los valores.";
-}
-</script>
 </body>
 </html>
