@@ -872,8 +872,7 @@ function mostrarPreguntaJugador() {
 
   yaRespondio = false;
 
-  const p =
-    preguntas[preguntaActual];
+  const p = preguntas[preguntaActual];
 
   pantalla(`
     <div class="card">
@@ -883,9 +882,7 @@ function mostrarPreguntaJugador() {
       </div>
 
       <p>
-        Pregunta
-        ${preguntaActual + 1}
-        de 30
+        Pregunta ${preguntaActual + 1} de 30
       </p>
 
       <div
@@ -893,6 +890,7 @@ function mostrarPreguntaJugador() {
         style="
           font-size:2.5rem;
           font-weight:bold;
+          margin:15px;
         ">
         ⏱️ 15
       </div>
@@ -918,9 +916,10 @@ function mostrarPreguntaJugador() {
     </div>
   `);
 
+  // El reloj empieza usando la hora
+  // que puso el anfitrión en Firebase
   iniciarRelojJugador();
 }
-
 
 /* =========================
    ⏱️ RELOJ JUGADOR
