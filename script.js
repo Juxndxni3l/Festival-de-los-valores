@@ -30,7 +30,7 @@ const db = getDatabase(app);
 
 
 /* =========================
-   🐯 ANIMALES
+   🐾 ANIMALES
 ========================= */
 
 const animales = [
@@ -46,192 +46,438 @@ const animales = [
 
 
 /* =========================
-   🧠 30 PREGUNTAS
+   🧠 PREGUNTAS DIFÍCILES
 ========================= */
 
 const preguntas = [
 
 [
-"Un amigo rompe algo tuyo accidentalmente. ¿Qué haces?",
-["Gritarle","Hablar con él tranquilamente","Ignorarlo","Romperle algo"],
+"En un trabajo grupal, un compañero no cumplió su parte y te pide que digas que sí la hizo. ¿Cuál demuestra mejor responsabilidad?",
+[
+"Cubrirlo para evitar un conflicto",
+"Decir la verdad y buscar una forma de solucionar el problema",
+"Exponerlo delante de todos para que aprenda",
+"Hacer todo el trabajo sin decir nada"
+],
 1
 ],
 
 [
-"Alguien piensa diferente a ti. ¿Qué demuestra respeto?",
-["Escucharlo","Burlarte","Interrumpirlo","Insultarlo"],
-0
+"Dos personas tienen opiniones opuestas sobre un tema. ¿Cuál comportamiento demuestra tolerancia?",
+[
+"Intentar convencer al otro hasta que cambie de opinión",
+"Escuchar sus argumentos aunque no estés de acuerdo",
+"Evitar hablar con esa persona",
+"Decir que ambas opiniones son igualmente correctas"
+],
+1
 ],
 
 [
-"Encuentras dinero en el salón y nadie sabe de quién es. ¿Qué haces?",
-["Te lo quedas","Lo escondes","Lo entregas al profesor","Lo gastas"],
+"Antes de una evaluación recibes por accidente las respuestas de otro estudiante. ¿Qué decisión refleja integridad?",
+[
+"Revisarlas solo para comprobar si son correctas",
+"No utilizarlas y comunicar la situación",
+"Compartirlas únicamente con tus amigos",
+"Utilizarlas porque llegaron sin que las pidieras"
+],
+1
+],
+
+[
+"Un estudiante nuevo es excluido porque habla con un acento diferente. ¿Qué acción refleja inclusión?",
+[
+"Decirle que debe cambiar su forma de hablar",
+"Invitarlo a participar respetando sus diferencias",
+"Dejar que se adapte solo",
+"Hablar por él para evitar que se equivoque"
+],
+1
+],
+
+[
+"Cometes un error que afecta el resultado de un proyecto. ¿Qué demuestra mayor madurez?",
+[
+"Explicar por qué alguien más tuvo la culpa",
+"Ocultar el error hasta encontrar una solución",
+"Reconocerlo y proponer cómo corregirlo",
+"Esperar a que otra persona lo descubra"
+],
 2
 ],
 
 [
-"Tu equipo pierde por un error tuyo. ¿Qué haces?",
-["Culpas a otro","Aceptas el error","Te vas","Te burlas"],
+"Un profesor hace una crítica sobre tu trabajo y señala aspectos que debes mejorar. ¿Qué actitud demuestra humildad?",
+[
+"Rechazar la crítica porque trabajaste mucho",
+"Escucharla y analizar qué puedes aprender de ella",
+"Comparar tu trabajo con el de otros",
+"Responder señalando los errores del profesor"
+],
 1
 ],
 
 [
-"Un compañero está siendo excluido. ¿Qué sería solidaridad?",
-["Ignorarlo","Invitarlo a participar","Reírte","Decir que se vaya"],
+"Tu propuesta pierde una votación dentro del grupo. ¿Qué comportamiento demuestra cooperación?",
+[
+"Dejar de participar porque no eligieron tu idea",
+"Apoyar el acuerdo y expresar tus preocupaciones respetuosamente",
+"Intentar convencer al grupo después de la decisión",
+"Decir que el resultado fue injusto sin analizarlo"
+],
 1
 ],
 
 [
-"Prometiste hacer una tarea. ¿Qué valor debes demostrar?",
-["Responsabilidad","Envidia","Orgullo","Egoísmo"],
+"Un compañero recibe un reconocimiento por su esfuerzo y tú también querías obtenerlo. ¿Qué demuestra una buena convivencia?",
+[
+"Felicitarlo y reconocer su esfuerzo",
+"Restarle importancia al premio",
+"Evitar hablarle durante el resto del día",
+"Intentar demostrar que tú eras mejor"
+],
 0
 ],
 
 [
-"Alguien te cuenta un secreto importante. ¿Qué haces?",
-["Lo publicas","Lo cuentas a todos","Respetas su confianza","Te burlas"],
+"Una persona te cuenta algo privado y te pide que no lo compartas. ¿Qué conducta demuestra respeto?",
+[
+"Contárselo solamente a tu mejor amigo",
+"Compartirlo si crees que es interesante",
+"Respetar su privacidad",
+"Publicarlo sin mencionar su nombre"
+],
 2
 ],
 
 [
-"¿Cuál acción demuestra empatía?",
-["Escuchar cómo se siente alguien","Ignorarlo","Juzgarlo","Burlarte"],
-0
-],
-
+"En un grupo de mensajes comienza una discusión entre dos compañeros. ¿Cuál es la mejor forma de manejarla?",
 [
-"Si ves una injusticia, ¿qué deberías hacer?",
-["Apoyarla","Ignorarla siempre","Buscar una solución justa","Reírte"],
+"Tomar partido inmediatamente",
+"Responder con el mismo tono para defenderte",
+"Buscar un diálogo respetuoso y evitar ataques personales",
+"Salir del grupo y dejar que continúe"
+],
 2
 ],
 
 [
-"Un compañero consigue algo que tú querías. ¿Qué actitud es mejor?",
-["Felicitarlo","Enojarte","Insultarlo","Quitárselo"],
-0
-],
-
+"Tienes varias tareas pendientes y sabes que no podrás terminarlas todas a tiempo. ¿Qué demuestra responsabilidad?",
 [
-"¿Qué significa ser honesto?",
-["Decir la verdad","Mentir","Ocultar siempre la verdad","Engañar"],
-0
+"Esperar hasta el último momento",
+"Priorizar, organizar el tiempo y comunicar cualquier dificultad",
+"Hacer primero las más fáciles aunque no sean urgentes",
+"Dejar algunas sin terminar sin avisar"
 ],
-
-[
-"Si cometes un error, ¿qué demuestra madurez?",
-["Negarlo","Reconocerlo","Culpar a otro","Esconderlo"],
 1
 ],
 
 [
-"¿Qué valor ayuda a convivir con personas diferentes?",
-["Respeto","Egoísmo","Envidia","Burla"],
+"Un amigo incumple una regla y otra persona hace exactamente lo mismo. ¿Qué demuestra justicia?",
+[
+"Aplicar la regla solo a quien no es tu amigo",
+"Defender a tu amigo porque lo conoces",
+"Aplicar el mismo criterio para ambos",
+"Permitirlo si nadie se da cuenta"
+],
+2
+],
+
+[
+"Alguien hace una broma que incomoda públicamente a otro compañero. ¿Qué demuestra empatía?",
+[
+"Reír para evitar quedar mal",
+"Preguntar después qué ocurrió",
+"Reconocer que la broma puede haber afectado a la persona y detenerla",
+"Decir que debe aprender a soportar bromas"
+],
+2
+],
+
+[
+"Un proyecto grupal obtiene un resultado negativo. ¿Cuál reacción favorece la convivencia?",
+[
+"Buscar inmediatamente a un culpable",
+"Analizar juntos qué falló y cómo solucionarlo",
+"Decir que el problema fue responsabilidad del líder",
+"Evitar hablar del resultado"
+],
+1
+],
+
+[
+"El profesor felicita al grupo por un trabajo y menciona especialmente tu participación. ¿Qué demuestra humildad?",
+[
+"Aceptar el reconocimiento pero destacar también el esfuerzo del equipo",
+"Decir que prácticamente hiciste todo",
+"No aceptar ningún reconocimiento",
+"Compararte con quienes participaron menos"
+],
 0
 ],
 
 [
-"Alguien necesita ayuda con una tarea. ¿Qué puedes hacer?",
-["Ayudarlo","Burlarte","Ignorarlo","Dañarle el trabajo"],
-0
+"Recibes una opinión negativa sobre una idea que considerabas muy buena. ¿Qué demuestra apertura?",
+[
+"Descartarla porque no coincide contigo",
+"Preguntar las razones y evaluar si tienen fundamento",
+"Responder inmediatamente defendiendo tu idea",
+"Preguntar a otros quién tiene la razón"
+],
+1
 ],
 
 [
-"¿Qué haces si alguien te habla mientras estás ocupado?",
-["Lo escuchas cuando puedas","Lo insultas","Lo ignoras siempre","Le gritas"],
-0
+"Un estudiante está solo durante una actividad grupal. ¿Qué acción demuestra solidaridad e inclusión?",
+[
+"Esperar a que él se acerque",
+"Invitarlo a participar y darle un espacio dentro del equipo",
+"Preguntarle delante de todos por qué está solo",
+"Decirle que busque otro grupo"
+],
+1
 ],
 
 [
-"¿Cuál es una forma correcta de resolver un conflicto?",
-["Dialogar","Golpear","Insultar","Huir siempre"],
-0
+"Escuchas un rumor sobre un compañero, pero nadie sabe si es cierto. ¿Qué demuestra prudencia?",
+[
+"Compartirlo diciendo que no sabes si es verdad",
+"Preguntar a varias personas para confirmar el rumor",
+"No difundirlo sin información confiable",
+"Publicarlo para que la persona pueda defenderse"
+],
+2
 ],
 
 [
-"Si recibes una crítica, ¿qué puedes hacer?",
-["Escucharla y reflexionar","Insultar","Enojarte siempre","Burlarte"],
-0
+"Una costumbre de otra persona es diferente a la tuya. ¿Qué demuestra tolerancia?",
+[
+"Considerarla incorrecta porque no coincide con tus costumbres",
+"Intentar comprenderla antes de juzgarla",
+"Evitar relacionarte con esa persona",
+"Decirle que debería adoptar tus costumbres"
+],
+1
 ],
 
 [
-"¿Qué demuestra tolerancia?",
-["Aceptar diferencias","Obligar a todos a pensar igual","Burlarse","Excluir"],
-0
+"Un integrante del equipo tiene dificultades para realizar su parte. ¿Qué demuestra cooperación?",
+[
+"Reemplazarlo sin explicarle nada",
+"Excluirlo para terminar más rápido",
+"Apoyarlo y buscar una distribución adecuada de las tareas",
+"Decir que el problema es únicamente suyo"
+],
+2
 ],
 
 [
-"Un compañero gana justamente. ¿Qué haces?",
-["Lo felicitas","Lo acusas sin razón","Te burlas","Le quitas el premio"],
-0
+"Sabes que probablemente no cumplirás una fecha de entrega. ¿Cuál decisión demuestra responsabilidad?",
+[
+"Esperar hasta que llegue la fecha",
+"Informarlo con anticipación y proponer una solución realista",
+"Entregar cualquier cosa para cumplir",
+"No decir nada para evitar una discusión"
+],
+1
 ],
 
 [
-"¿Qué valor está relacionado con cumplir tus compromisos?",
-["Responsabilidad","Envidia","Egoísmo","Desprecio"],
-0
+"No estás de acuerdo con una norma del colegio. ¿Qué conducta demuestra ciudadanía responsable?",
+[
+"Incumplirla para demostrar tu desacuerdo",
+"Criticarla únicamente con tus amigos",
+"Expresar tu opinión por los canales adecuados y respetuosamente",
+"Intentar que otros también la incumplan"
+],
+2
 ],
 
 [
-"Si ves basura en el colegio, ¿qué actitud ayuda al ambiente?",
-["Recogerla o depositarla correctamente","Tirarla más","Ignorar siempre","Esconderla"],
-0
+"Crees que una calificación pudo haber sido revisada incorrectamente, pero no tienes pruebas. ¿Qué demuestra justicia?",
+[
+"Acusar al profesor de inmediato",
+"Pedir respetuosamente una explicación o revisión",
+"Decir a tus compañeros que fue injusto",
+"Ignorar el resultado aunque tengas dudas"
+],
+1
 ],
 
 [
-"¿Qué significa cooperar?",
-["Trabajar juntos","Trabajar contra todos","No participar","Molestar"],
-0
+"Un amigo te pide que mientas para justificar una ausencia suya. ¿Qué demuestra honestidad?",
+[
+"Aceptar porque es tu amigo",
+"Mentir solo una vez",
+"Negarte a mentir y animarlo a explicar la situación con sinceridad",
+"Decir una verdad a medias"
+],
+2
 ],
 
 [
-"Si alguien se equivoca al hablar, ¿qué haces?",
-["Lo respetas","Te burlas","Lo imitas","Lo interrumpes"],
-0
+"Alguien comparte contigo una captura de una conversación privada de otra persona. ¿Qué demuestra respeto digital?",
+[
+"Guardar la captura por si algún día la necesitas",
+"Compartirla solamente con personas de confianza",
+"No difundir contenido privado sin autorización",
+"Publicarla ocultando los nombres"
+],
+2
 ],
 
 [
-"¿Qué valor ayuda a reconocer los sentimientos de otros?",
-["Empatía","Envidia","Orgullo","Egoísmo"],
-0
+"Durante una decisión grupal, la mayoría rechaza una idea de la minoría. ¿Qué demuestra apertura y cooperación?",
+[
+"Ignorar la idea porque perdió la votación",
+"Analizar sus argumentos antes de descartarla definitivamente",
+"Obligar al grupo a probarla",
+"Decir que la mayoría siempre tiene la razón"
+],
+1
 ],
 
 [
-"¿Qué demuestra una persona justa?",
-["Trata de manera equilibrada","Favorece siempre a sus amigos","Miente","Excluye"],
-0
+"Durante una discusión estás muy molesto y tienes ganas de responder inmediatamente. ¿Qué demuestra autocontrol?",
+[
+"Responder rápido para no parecer débil",
+"Esperar a calmarte antes de contestar",
+"Ignorar completamente a la otra persona",
+"Responder utilizando el mismo tono"
+],
+1
 ],
 
 [
-"Si tienes una opinión diferente, puedes...",
-["Expresarla respetuosamente","Insultar","Gritar","Obligar a todos"],
-0
+"El equipo recibe un reconocimiento por un proyecto en el que participaron varias personas. ¿Qué demuestra humildad?",
+[
+"Decir que el reconocimiento fue principalmente por ti",
+"Reconocer la contribución de todos",
+"Decir que el premio no tiene importancia",
+"Comparar tu trabajo con el de los demás"
+],
+1
 ],
 
 [
-"¿Qué haces cuando alguien necesita ser escuchado?",
-["Prestas atención","Lo interrumpes","Te burlas","Te vas"],
-0
+"Un compañero te pide ayuda mientras estás ocupado. ¿Cuál respuesta combina empatía y responsabilidad?",
+[
+"Decirle que no puedes y olvidarte del tema",
+"Explicarle cuándo podrás ayudarlo y cumplirlo",
+"Dejar tus tareas inmediatamente aunque sean urgentes",
+"Decirle que busque ayuda con otra persona"
+],
+1
 ],
 
 [
-"¿Cuál acción demuestra generosidad?",
-["Compartir cuando puedes","Quedarte todo","Esconderlo","Negarte siempre"],
-0
-],
-
+"Un proyecto fracasa poco antes de la fecha de entrega. ¿Qué demuestra perseverancia?",
 [
-"¿Qué ayuda más a una buena convivencia?",
-["Respeto y diálogo","Insultos","Mentiras","Egoísmo"],
-0
+"Abandonarlo porque ya no vale la pena",
+"Buscar responsables para explicar el fracaso",
+"Analizar los errores y crear un plan para mejorar el resultado",
+"Ocultar las dificultades hasta la entrega"
 ],
-
-[
-"Al terminar un proyecto grupal, ¿qué es correcto?",
-["Reconocer el esfuerzo de todos","Atribuirte todo","Culpar al equipo","Ignorar a los demás"],
-0
+2
 ]
 
 ];
+
+
+/* =========================
+   ⚙️ CONFIGURACIÓN DEL JUEGO
+========================= */
+
+const DURACION = 15;
+const DURACION_MS = DURACION * 1000;
+
+
+/*
+   PUNTOS:
+
+   15 segundos = 1000
+   14 segundos = 950
+   13 segundos = 900
+   ...
+   5 segundos  = 500
+   1 segundo   = 300
+   0 segundos  = 0
+
+   Fórmula:
+   250 + (segundos restantes × 50)
+*/
+
+function calcularPuntos(correcta, inicio) {
+
+  if (!correcta) return 0;
+
+  const transcurrido = Math.max(
+    0,
+    Math.min(
+      DURACION_MS,
+      ahoraServidor() - inicio
+    )
+  );
+
+  const milisegundosRestantes =
+    DURACION_MS - transcurrido;
+
+  const segundosRestantes =
+    Math.ceil(
+      milisegundosRestantes / 1000
+    );
+
+  if (segundosRestantes <= 0) {
+    return 0;
+  }
+
+  return Math.min(
+    1000,
+    250 + segundosRestantes * 50
+  );
+}
+
+
+/* =========================
+   🕐 HORA DEL SERVIDOR
+========================= */
+
+let serverOffset = 0;
+let offsetListo = false;
+
+const esperaServidor =
+  new Promise(resolve => {
+
+    onValue(
+      ref(db, ".info/serverTimeOffset"),
+      snap => {
+
+        serverOffset =
+          Number(snap.val()) || 0;
+
+        if (!offsetListo) {
+
+          offsetListo = true;
+
+          resolve();
+        }
+      }
+    );
+  });
+
+
+function ahoraServidor() {
+
+  return Date.now() + serverOffset;
+}
+
+
+function serverTimestamp() {
+
+  return {
+    ".sv": "timestamp"
+  };
+}
 
 
 /* =========================
@@ -248,13 +494,22 @@ let jugadorID = "";
 let preguntaActual = 0;
 let puntos = 0;
 
-let tiempo = 15;
+let tiempo = DURACION;
 let temporizador = null;
 
 let yaRespondio = false;
+
 let ultimaPreguntaMostrada = -1;
+let preguntaInicioActual = 0;
 
 let escuchandoPartida = false;
+
+let controlandoPreguntas = false;
+let cambiandoPregunta = false;
+let finalizando = false;
+
+let detenerRanking = null;
+let detenerLobby = null;
 
 
 /* =========================
@@ -262,7 +517,43 @@ let escuchandoPartida = false;
 ========================= */
 
 function pantalla(html) {
-  document.getElementById("pantalla").innerHTML = html;
+
+  const elemento =
+    document.getElementById("pantalla");
+
+  if (elemento) {
+    elemento.innerHTML = html;
+  }
+}
+
+
+/* =========================
+   🧹 ESCAPAR TEXTO
+========================= */
+
+function escapar(texto) {
+
+  return String(texto)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+/* =========================
+   🚫 OCULTAR MENÚ
+========================= */
+
+function ocultarMenu() {
+
+  const menu =
+    document.querySelector(".menu");
+
+  if (menu) {
+    menu.style.display = "none";
+  }
 }
 
 
@@ -277,60 +568,94 @@ window.crearPartida = function () {
   ocultarMenu();
 
   pantalla(`
+
     <div class="card">
 
       <h2>👑 Crear partida</h2>
 
-      <input id="nombre" placeholder="Nombre del anfitrión">
+      <input
+        id="nombre"
+        placeholder="Nombre del anfitrión"
+        maxlength="25"
+      >
 
       <button onclick="crearSala()">
         🚀 Crear partida
       </button>
 
     </div>
+
   `);
 };
 
 
 /* =========================
-   OCULTAR BOTONES
+   🔢 CREAR CÓDIGO
 ========================= */
 
-function ocultarMenu() {
+async function generarCodigo() {
 
-  const menu = document.querySelector(".menu");
+  let nuevoCodigo;
+  let existe = true;
 
-  if (menu) {
-    menu.style.display = "none";
+  while (existe) {
+
+    nuevoCodigo =
+      Math.floor(
+        100000 +
+        Math.random() * 900000
+      ).toString();
+
+    const snap =
+      await get(
+        ref(
+          db,
+          "partidas/" +
+          nuevoCodigo
+        )
+      );
+
+    existe = snap.exists();
   }
+
+  return nuevoCodigo;
 }
 
 
 /* =========================
-   CREAR SALA
+   🏠 CREAR SALA
 ========================= */
 
 window.crearSala = async function () {
 
-  jugador = document.getElementById("nombre").value.trim();
+  jugador =
+    document
+      .getElementById("nombre")
+      .value
+      .trim();
 
   if (!jugador) {
-    alert("Escribe un nombre 😭");
+
+    alert("Escribe tu nombre 😭");
+
     return;
   }
 
-  codigo = Math.floor(
-    100000 + Math.random() * 900000
-  ).toString();
+  codigo =
+    await generarCodigo();
 
   await set(
-    ref(db, "partidas/" + codigo),
+    ref(
+      db,
+      "partidas/" +
+      codigo
+    ),
     {
       estado: "esperando",
       pregunta: 0,
       anfitrion: jugador,
       preguntaInicio: 0,
-      tiempoRestante: 15
+      tiempoRestante: DURACION
     }
   );
 
@@ -339,19 +664,35 @@ window.crearSala = async function () {
 
 
 /* =========================
-   SALA DEL ANFITRIÓN
+   👑 SALA ANFITRIÓN
 ========================= */
 
 function mostrarSalaAnfitrion() {
 
   pantalla(`
+
     <div class="card">
 
       <h2>👑 SALA</h2>
 
-      <div class="codigo">${codigo}</div>
+      <div class="codigo">
+        ${codigo}
+      </div>
 
-      <p>Comparte este código 📱</p>
+      <p>
+        📱 Comparte este código
+      </p>
+
+      <div
+        style="
+          font-size:1.2rem;
+          margin:20px 0;
+        "
+      >
+        🧠 30 preguntas difíciles<br>
+        ⏱️ 15 segundos por pregunta<br>
+        🏆 Máximo 1000 puntos
+      </div>
 
       <div id="listaJugadores">
         Esperando jugadores...
@@ -359,56 +700,123 @@ function mostrarSalaAnfitrion() {
 
       <br>
 
-      <button onclick="empezarPartida()">
+      <button
+        id="btnEmpezar"
+        onclick="empezarPartida()"
+        disabled
+      >
         🚀 EMPEZAR
       </button>
 
     </div>
+
   `);
 
-  onValue(
-    ref(db, "partidas/" + codigo + "/jugadores"),
+  escucharLobby();
+}
+
+
+/* =========================
+   👥 LOBBY
+========================= */
+
+function escucharLobby() {
+
+  if (detenerLobby) {
+    detenerLobby();
+    detenerLobby = null;
+  }
+
+  detenerLobby = onValue(
+    ref(
+      db,
+      "partidas/" +
+      codigo +
+      "/jugadores"
+    ),
     snap => {
 
-      const jugadores = snap.val() || {};
+      const jugadores =
+        snap.val() || {};
 
       const lista =
         Object.values(jugadores);
 
       const elemento =
-        document.getElementById("listaJugadores");
+        document.getElementById(
+          "listaJugadores"
+        );
+
+      const boton =
+        document.getElementById(
+          "btnEmpezar"
+        );
 
       if (!elemento) return;
 
-      elemento.innerHTML =
-        lista.map(j => `
-          <p>
-            ${j.animal} ${j.nombre}
-            — ${j.puntos || 0} pts
-          </p>
-        `).join("")
-        ||
-        "Esperando jugadores...";
+      elemento.innerHTML = `
+
+        <h3>
+          👥 Jugadores: ${lista.length}
+        </h3>
+
+        ${
+          lista.map(j => `
+            <p>
+              ${j.animal}
+              ${escapar(j.nombre)}
+            </p>
+          `).join("")
+          ||
+          "<p>Esperando jugadores... 👀</p>"
+        }
+
+      `;
+
+      if (boton) {
+        boton.disabled =
+          lista.length === 0;
+      }
     }
   );
 }
 
 
 /* =========================
-   🚀 EMPEZAR
+   🚀 EMPEZAR PARTIDA
 ========================= */
 
 window.empezarPartida = async function () {
 
+  if (detenerLobby) {
+    detenerLobby();
+    detenerLobby = null;
+  }
+
   preguntaActual = 0;
+  finalizando = false;
+
+  await esperaServidor;
 
   await update(
-    ref(db, "partidas/" + codigo),
+    ref(
+      db,
+      "partidas/" +
+      codigo
+    ),
     {
       estado: "jugando",
       pregunta: 0,
-      preguntaInicio: Date.now(),
-      tiempoRestante: 15
+
+      /*
+        Firebase coloca aquí
+        la hora REAL del servidor.
+      */
+      preguntaInicio:
+        serverTimestamp(),
+
+      tiempoRestante:
+        DURACION
     }
   );
 
@@ -417,68 +825,188 @@ window.empezarPartida = async function () {
 
 
 /* =========================
-   🎮 CONTROL DEL ANFITRIÓN
+   👑 CONTROL PREGUNTAS
 ========================= */
 
 function iniciarControlPreguntas() {
+
+  if (controlandoPreguntas) return;
+
+  controlandoPreguntas = true;
 
   mostrarPreguntaAnfitrion();
 
   clearInterval(temporizador);
 
-  temporizador = setInterval(async () => {
+  temporizador =
+    setInterval(async () => {
 
-    const snap =
-      await get(ref(db, "partidas/" + codigo));
+      if (cambiandoPregunta) return;
 
-    const partida = snap.val();
-
-    if (!partida) return;
-
-    if (partida.estado !== "jugando") return;
-
-    const transcurrido =
-      Math.floor(
-        (Date.now() - partida.preguntaInicio) / 1000
-      );
-
-    const restante =
-      Math.max(0, 15 - transcurrido);
-
-    const contador =
-      document.getElementById("tiempoAnfitrion");
-
-    if (contador) {
-      contador.innerHTML =
-        `⏱️ ${restante}`;
-    }
-
-    if (restante <= 0) {
-
-      clearInterval(temporizador);
-
-      if (preguntaActual < preguntas.length - 1) {
-
-        preguntaActual++;
-
-        await update(
-          ref(db, "partidas/" + codigo),
-          {
-            pregunta: preguntaActual,
-            preguntaInicio: Date.now(),
-            tiempoRestante: 15
-          }
+      const snap =
+        await get(
+          ref(
+            db,
+            "partidas/" +
+            codigo
+          )
         );
 
-        iniciarControlPreguntas();
+      const partida =
+        snap.val();
 
-      } else {
+      if (!partida) return;
 
-        finalizarPartida();
+      if (
+        partida.estado !==
+        "jugando"
+      ) {
+
+        clearInterval(temporizador);
+
+        controlandoPreguntas = false;
+
+        return;
       }
-    }
 
-  }, 500);
+      const inicio =
+        Number(
+          partida.preguntaInicio
+        );
+
+      if (!inicio) return;
+
+      const transcurrido =
+        ahoraServidor() -
+        inicio;
+
+      const restante =
+        Math.max(
+          0,
+          Math.ceil(
+            (
+              DURACION_MS -
+              transcurrido
+            ) / 1000
+          )
+        );
+
+      tiempo = restante;
+
+      const contador =
+        document.getElementById(
+          "tiempoAnfitrion"
+        );
+
+      if (contador) {
+
+        contador.innerHTML =
+          `⏱️ ${restante}`;
+
+        if (restante <= 5) {
+
+          contador.style.transform =
+            "scale(1.2)";
+        }
+      }
+
+      if (
+        transcurrido >=
+        DURACION_MS
+      ) {
+
+        cambiandoPregunta = true;
+
+        if (
+          preguntaActual <
+          preguntas.length - 1
+        ) {
+
+          preguntaActual++;
+
+          await cambiarPregunta();
+
+          cambiandoPregunta = false;
+
+        } else {
+
+          await finalizarPartida();
+
+          cambiandoPregunta = false;
+        }
+      }
+
+    }, 100);
+}
+
+
+/* =========================
+   🔄 CAMBIAR PREGUNTA
+========================= */
+
+async function cambiarPregunta() {
+
+  const jugadoresSnap =
+    await get(
+      ref(
+        db,
+        "partidas/" +
+        codigo +
+        "/jugadores"
+      )
+    );
+
+  const jugadores =
+    jugadoresSnap.val() || {};
+
+  const cambios = {
+
+    ["partidas/" +
+      codigo +
+      "/pregunta"]:
+      preguntaActual,
+
+    ["partidas/" +
+      codigo +
+      "/preguntaInicio"]:
+      serverTimestamp(),
+
+    ["partidas/" +
+      codigo +
+      "/tiempoRestante"]:
+      DURACION
+
+  };
+
+
+  Object.keys(jugadores)
+    .forEach(id => {
+
+      cambios[
+        "partidas/" +
+        codigo +
+        "/jugadores/" +
+        id +
+        "/respondio"
+      ] = false;
+
+      cambios[
+        "partidas/" +
+        codigo +
+        "/jugadores/" +
+        id +
+        "/ultimaGanancia"
+      ] = 0;
+
+    });
+
+
+  await update(
+    ref(db),
+    cambios
+  );
+
+  mostrarPreguntaAnfitrion();
 }
 
 
@@ -488,128 +1016,128 @@ function iniciarControlPreguntas() {
 
 function mostrarPreguntaAnfitrion() {
 
-  const p = preguntas[preguntaActual];
+  const p =
+    preguntas[preguntaActual];
 
   pantalla(`
+
     <div class="card">
 
-      <h2>👑 Pregunta ${preguntaActual + 1}/30</h2>
-
-      <h2>${p[0]}</h2>
+      <h2>
+        👑 Pregunta
+        ${preguntaActual + 1}/30
+      </h2>
 
       <div
         id="tiempoAnfitrion"
         style="
-          font-size:2rem;
+          font-size:2.8rem;
           font-weight:bold;
           margin:15px;
-        ">
-        ⏱️ 15
+          transition:transform .2s;
+        "
+      >
+        ⏱️ ${DURACION}
       </div>
+
+      <h2>
+        ${p[0]}
+      </h2>
 
       <p>
         📱 Los jugadores están respondiendo...
       </p>
 
-      <button
-        id="botonPausa"
-        onclick="pausarPartida()">
-        ⏸️ PAUSAR
-      </button>
-
       <div id="rankingActual"></div>
 
     </div>
+
   `);
 
-  escucharJugadoresAnfitrion();
+  escucharRankingAnfitrion();
 }
 
 
 /* =========================
-   ⏸️ PAUSAR
+   🏆 RANKING EN VIVO
 ========================= */
 
-window.pausarPartida = async function () {
+function escucharRankingAnfitrion() {
 
-  const snap =
-    await get(ref(db, "partidas/" + codigo));
-
-  const partida = snap.val();
-
-  if (!partida) return;
-
-  if (partida.estado === "jugando") {
-
-    const transcurrido =
-      Math.floor(
-        (Date.now() - partida.preguntaInicio) / 1000
-      );
-
-    const restante =
-      Math.max(0, 15 - transcurrido);
-
-    await update(
-      ref(db, "partidas/" + codigo),
-      {
-        estado: "pausada",
-        tiempoRestante: restante
-      }
-    );
-
-    clearInterval(temporizador);
-
-  } else if (partida.estado === "pausada") {
-
-    const restante =
-      partida.tiempoRestante || 0;
-
-    await update(
-      ref(db, "partidas/" + codigo),
-      {
-        estado: "jugando",
-        preguntaInicio:
-          Date.now() - ((15 - restante) * 1000)
-      }
-    );
-
-    iniciarControlPreguntas();
+  if (detenerRanking) {
+    detenerRanking();
+    detenerRanking = null;
   }
-};
 
-
-/* =========================
-   📊 RANKING DEL ANFITRIÓN
-========================= */
-
-function escucharJugadoresAnfitrion() {
-
-  onValue(
-    ref(db, "partidas/" + codigo + "/jugadores"),
+  detenerRanking = onValue(
+    ref(
+      db,
+      "partidas/" +
+      codigo +
+      "/jugadores"
+    ),
     snap => {
 
       const jugadores =
-        Object.values(snap.val() || {});
+        Object.entries(
+          snap.val() || {}
+        )
+        .map(([id, datos]) => ({
+          id,
+          ...datos
+        }));
 
       jugadores.sort(
-        (a, b) => (b.puntos || 0) - (a.puntos || 0)
+        (a, b) =>
+          Number(b.puntos || 0) -
+          Number(a.puntos || 0)
       );
 
       const elemento =
-        document.getElementById("rankingActual");
+        document.getElementById(
+          "rankingActual"
+        );
 
       if (!elemento) return;
 
       elemento.innerHTML = `
-        <h3>🏆 Puntos</h3>
 
-        ${jugadores.map((j, i) => `
-          <p>
-            ${i + 1}. ${j.animal}
-            ${j.nombre}
-            — <strong>${j.puntos || 0}</strong> pts
-          </p>
-        `).join("")}
+        <h3>🏆 Ranking</h3>
+
+        ${
+          jugadores.map((j, i) => `
+
+            <p
+              style="
+                margin:8px;
+                padding:8px;
+                border-radius:12px;
+                background:rgba(255,255,255,.75);
+                color:#5424b8;
+              "
+            >
+
+              ${
+                i === 0 ? "🥇" :
+                i === 1 ? "🥈" :
+                i === 2 ? "🥉" :
+                `${i + 1}.`
+              }
+
+              ${j.animal}
+              ${escapar(j.nombre)}
+
+              —
+              <strong>
+                ${Number(j.puntos || 0)}
+              </strong>
+              pts
+
+            </p>
+
+          `).join("")
+        }
+
       `;
     }
   );
@@ -627,30 +1155,49 @@ window.unirsePartida = function () {
   ocultarMenu();
 
   pantalla(`
+
     <div class="card">
 
-      <h2>🎮 Unirse</h2>
+      <h2>🎮 Unirse a partida</h2>
 
       <input
         id="nombreJugador"
         placeholder="Tu nombre"
+        maxlength="25"
       >
 
-      <h3>🐾 Elige tu animal</h3>
+      <h3>
+        🐾 Elige tu animal
+      </h3>
 
       <div>
-        ${animales.map((a, i) => `
-          <button
-            class="personaje"
-            onclick="elegirAnimal(${i}, this)">
-            ${a}
-          </button>
-        `).join("")}
+
+        ${
+          animales.map((a, i) => `
+
+            <button
+              class="personaje"
+              onclick="
+                elegirAnimal(${i}, this)
+              "
+              style="
+                font-size:2rem;
+                margin:5px;
+                transition:.2s;
+              "
+            >
+              ${a}
+            </button>
+
+          `).join("")
+        }
+
       </div>
 
       <input
         id="codigo"
         placeholder="Código de partida"
+        maxlength="6"
       >
 
       <button onclick="entrar()">
@@ -658,6 +1205,7 @@ window.unirsePartida = function () {
       </button>
 
     </div>
+
   `);
 };
 
@@ -666,14 +1214,18 @@ window.unirsePartida = function () {
    🐼 ELEGIR ANIMAL
 ========================= */
 
-window.elegirAnimal = function (i, boton) {
+window.elegirAnimal =
+function (i, boton) {
 
-  animal = animales[i];
+  animal =
+    animales[i];
 
   document
     .querySelectorAll(".personaje")
     .forEach(b => {
-      b.style.transform = "scale(1)";
+
+      b.style.transform =
+        "scale(1)";
     });
 
   boton.style.transform =
@@ -685,38 +1237,73 @@ window.elegirAnimal = function (i, boton) {
    🚪 ENTRAR
 ========================= */
 
-window.entrar = async function () {
+window.entrar =
+async function () {
 
   jugador =
-    document.getElementById(
-      "nombreJugador"
-    ).value.trim();
+    document
+      .getElementById(
+        "nombreJugador"
+      )
+      .value
+      .trim();
 
   codigo =
-    document.getElementById(
-      "codigo"
-    ).value.trim();
+    document
+      .getElementById(
+        "codigo"
+      )
+      .value
+      .trim();
 
-  if (!jugador || !codigo || !animal) {
+  if (
+    !jugador ||
+    !codigo ||
+    !animal
+  ) {
 
-    alert("Completa todo 😭");
+    alert(
+      "Completa tu nombre, código y animal 😭"
+    );
 
     return;
   }
 
   const salaSnap =
     await get(
-      ref(db, "partidas/" + codigo)
+      ref(
+        db,
+        "partidas/" +
+        codigo
+      )
     );
 
   if (!salaSnap.exists()) {
 
-    alert("❌ Esa partida no existe");
+    alert(
+      "❌ Esa partida no existe"
+    );
 
     return;
   }
 
-  jugadorID =
+  const sala =
+    salaSnap.val();
+
+  if (
+    sala.estado !==
+    "esperando"
+  ) {
+
+    alert(
+      "❌ La partida ya comenzó"
+    );
+
+    return;
+  }
+
+
+  const jugadorRef =
     push(
       ref(
         db,
@@ -724,42 +1311,55 @@ window.entrar = async function () {
         codigo +
         "/jugadores"
       )
-    ).key;
+    );
+
+  jugadorID =
+    jugadorRef.key;
+
+
+  puntos = 0;
 
   await set(
-    ref(
-      db,
-      "partidas/" +
-      codigo +
-      "/jugadores/" +
-      jugadorID
-    ),
+    jugadorRef,
     {
       nombre: jugador,
       animal: animal,
       puntos: 0,
-      respondio: false
+      respondio: false,
+      ultimaGanancia: 0
     }
   );
 
+
   pantalla(`
+
     <div class="card">
 
-      <div style="font-size:5rem">
+      <div style="
+        font-size:5rem;
+      ">
         ${animal}
       </div>
 
-      <h2>✅ ¡Entraste!</h2>
+      <h2>
+        ✅ ¡Entraste!
+      </h2>
 
       <p>
-        Hola ${jugador} 👋
+        Hola ${escapar(jugador)} 👋
       </p>
 
       <p>
-        Esperando al anfitrión...
+        Código:
+        <strong>${codigo}</strong>
+      </p>
+
+      <p>
+        Esperando al anfitrión... 👑
       </p>
 
     </div>
+
   `);
 
   escucharPartidaJugador();
@@ -767,7 +1367,7 @@ window.entrar = async function () {
 
 
 /* =========================
-   📡 ESCUCHAR PARTIDA
+   📡 PARTIDA JUGADOR
 ========================= */
 
 function escucharPartidaJugador() {
@@ -777,88 +1377,94 @@ function escucharPartidaJugador() {
   escuchandoPartida = true;
 
   onValue(
-    ref(db, "partidas/" + codigo),
+    ref(
+      db,
+      "partidas/" +
+      codigo
+    ),
     snap => {
 
-      const partida = snap.val();
+      const partida =
+        snap.val();
 
       if (!partida) return;
 
+
+      /* ESPERANDO */
+
       if (
-        partida.estado === "jugando" &&
-        partida.pregunta !== undefined
+        partida.estado ===
+        "esperando"
       ) {
+
+        clearInterval(
+          temporizador
+        );
+
+        return;
+      }
+
+
+      /* JUGANDO */
+
+      if (
+        partida.estado ===
+        "jugando"
+      ) {
+
+        const nuevaPregunta =
+          Number(
+            partida.pregunta
+          );
+
+        const nuevoInicio =
+          Number(
+            partida.preguntaInicio
+          );
+
 
         if (
           ultimaPreguntaMostrada !==
-          partida.pregunta
+            nuevaPregunta ||
+          preguntaInicioActual !==
+            nuevoInicio
         ) {
 
           ultimaPreguntaMostrada =
-            partida.pregunta;
+            nuevaPregunta;
 
           preguntaActual =
-            partida.pregunta;
+            nuevaPregunta;
+
+          preguntaInicioActual =
+            nuevoInicio;
 
           mostrarPreguntaJugador();
         }
 
+        return;
       }
 
+
+      /* FINALIZADA */
+
       if (
-        partida.estado === "pausada"
+        partida.estado ===
+        "finalizada"
       ) {
 
-        clearInterval(temporizador);
-
-        mostrarPausaJugador(
-          partida.tiempoRestante
+        clearInterval(
+          temporizador
         );
-      }
 
-      if (
-        partida.estado === "finalizada"
-      ) {
+        if (!finalizando) {
 
-        clearInterval(temporizador);
-
-        mostrarResultadoJugador();
+          mostrarResultadoJugador();
+        }
       }
 
     }
   );
-}
-
-
-/* =========================
-   ⏸️ PAUSA JUGADOR
-========================= */
-
-function mostrarPausaJugador(tiempoRestante) {
-
-  pantalla(`
-    <div class="card">
-
-      <div style="font-size:5rem">
-        ⏸️
-      </div>
-
-      <h2>Partida pausada</h2>
-
-      <p>
-        El anfitrión puso el juego en pausa.
-      </p>
-
-      <p>
-        Quedaban ${tiempoRestante} segundos.
-      </p>
-
-      <p>
-        Espera... 👀
-      </p>
-
-    </div>
-  `);
 }
 
 
@@ -868,58 +1474,86 @@ function mostrarPausaJugador(tiempoRestante) {
 
 function mostrarPreguntaJugador() {
 
-  clearInterval(temporizador);
+  clearInterval(
+    temporizador
+  );
 
   yaRespondio = false;
 
-  const p = preguntas[preguntaActual];
+  const p =
+    preguntas[preguntaActual];
+
 
   pantalla(`
+
     <div class="card">
 
-      <div style="font-size:4rem">
+      <div style="
+        font-size:4rem;
+      ">
         ${animal}
       </div>
 
       <p>
-        Pregunta ${preguntaActual + 1} de 30
+        Pregunta
+        ${preguntaActual + 1}
+        de 30
       </p>
 
       <div
         id="tiempo"
         style="
-          font-size:2.5rem;
+          font-size:2.8rem;
           font-weight:bold;
           margin:15px;
-        ">
-        ⏱️ 15
+          transition:transform .15s;
+        "
+      >
+        ⏱️ ${DURACION}
       </div>
 
-      <h2>${p[0]}</h2>
+      <h2>
+        ${p[0]}
+      </h2>
 
       <div id="opciones">
 
-        ${p[1].map((op, i) => `
-          <button
-            onclick="responderJugador(${i})">
-            ${op}
-          </button>
-        `).join("")}
+        ${
+          p[1].map((op, i) => `
+
+            <button
+              onclick="
+                responderJugador(${i})
+              "
+              style="
+                display:block;
+                width:100%;
+                margin:10px 0;
+              "
+            >
+              ${op}
+            </button>
+
+          `).join("")
+        }
 
       </div>
 
       <p>
         🏆 Tus puntos:
-        <strong>${puntos}</strong>
+        <strong>
+          ${puntos}
+        </strong>
       </p>
 
     </div>
+
   `);
 
-  // El reloj empieza usando la hora
-  // que puso el anfitrión en Firebase
+
   iniciarRelojJugador();
 }
+
 
 /* =========================
    ⏱️ RELOJ JUGADOR
@@ -927,58 +1561,82 @@ function mostrarPreguntaJugador() {
 
 async function iniciarRelojJugador() {
 
-  const snap =
-    await get(
-      ref(db, "partidas/" + codigo)
-    );
+  await esperaServidor;
 
-  const partida =
-    snap.val();
+  clearInterval(
+    temporizador
+  );
 
-  if (!partida) return;
+  if (!preguntaInicioActual) {
+    return;
+  }
 
-  clearInterval(temporizador);
 
-  temporizador =
-    setInterval(() => {
+  function actualizarReloj() {
 
-      if (yaRespondio) return;
+    if (yaRespondio) return;
 
-      const transcurrido =
-        Math.floor(
-          (Date.now() -
-            partida.preguntaInicio) /
-          1000
-        );
+    const transcurrido =
+      ahoraServidor() -
+      preguntaInicioActual;
 
-      tiempo =
-        Math.max(
-          0,
-          15 - transcurrido
-        );
+    const restanteMs =
+      Math.max(
+        0,
+        DURACION_MS -
+        transcurrido
+      );
 
-      const elemento =
-        document.getElementById("tiempo");
+    tiempo =
+      Math.max(
+        0,
+        Math.ceil(
+          restanteMs / 1000
+        )
+      );
 
-      if (elemento) {
 
-        elemento.innerHTML =
-          `⏱️ ${tiempo}`;
+    const elemento =
+      document.getElementById(
+        "tiempo"
+      );
 
-        if (tiempo <= 5) {
-          elemento.style.transform =
-            "scale(1.2)";
-        }
-      }
 
-      if (tiempo <= 0) {
+    if (elemento) {
 
-        clearInterval(temporizador);
+      elemento.innerHTML =
+        `⏱️ ${tiempo}`;
+
+      elemento.style.transform =
+        tiempo <= 5
+          ? "scale(1.2)"
+          : "scale(1)";
+    }
+
+
+    if (
+      restanteMs <= 0
+    ) {
+
+      clearInterval(
+        temporizador
+      );
+
+      if (!yaRespondio) {
 
         responderJugador(-1);
       }
+    }
+  }
 
-    }, 250);
+
+  actualizarReloj();
+
+  temporizador =
+    setInterval(
+      actualizarReloj,
+      100
+    );
 }
 
 
@@ -993,51 +1651,103 @@ async function (respuesta) {
 
   yaRespondio = true;
 
-  clearInterval(temporizador);
+  clearInterval(
+    temporizador
+  );
+
 
   const pregunta =
     preguntas[preguntaActual];
 
-  let puntosGanados = 0;
 
-  if (respuesta === pregunta[2]) {
+  const inicio =
+    preguntaInicioActual;
 
-    /*
-      MÁS RÁPIDO = MÁS PUNTOS
-      MÁS LENTO = MENOS PUNTOS
-    */
 
-    puntosGanados =
-      100 + (Math.max(0, tiempo) * 10);
+  const correcta =
+    respuesta !== -1 &&
+    respuesta === pregunta[2];
 
-    puntos += puntosGanados;
 
-  } else {
+  const puntosGanados =
+    calcularPuntos(
+      correcta,
+      inicio
+    );
 
-    puntosGanados = 0;
-  }
 
-  await update(
+  /*
+    LEEMOS LOS PUNTOS REALES
+    DE FIREBASE PARA EVITAR
+    QUE SE DESCUADREN.
+  */
+
+  const jugadorRef =
     ref(
       db,
       "partidas/" +
       codigo +
       "/jugadores/" +
       jugadorID
-    ),
+    );
+
+
+  const snap =
+    await get(jugadorRef);
+
+
+  if (!snap.exists()) {
+
+    return;
+  }
+
+
+  const datos =
+    snap.val();
+
+
+  const puntosActuales =
+    Number(
+      datos.puntos || 0
+    );
+
+
+  const nuevoTotal =
+    puntosActuales +
+    puntosGanados;
+
+
+  puntos =
+    nuevoTotal;
+
+
+  await update(
+    jugadorRef,
     {
-      puntos: puntos,
-      respondio: true,
-      ultimaGanancia: puntosGanados
+      puntos:
+        nuevoTotal,
+
+      respondio:
+        true,
+
+      ultimaGanancia:
+        puntosGanados
     }
   );
 
-  if (respuesta === -1) {
+
+  /*
+    MOSTRAR RESULTADO
+  */
+
+  if (
+    respuesta === -1
+  ) {
 
     mostrarSinRespuesta();
 
   } else if (
-    respuesta === pregunta[2]
+    correcta
   ) {
 
     mostrarPuntosGanados(
@@ -1052,19 +1762,19 @@ async function (respuesta) {
 
 
 /* =========================
-   ❌ SIN RESPUESTA
+   ⏰ TIEMPO AGOTADO
 ========================= */
 
 function mostrarSinRespuesta() {
 
   pantalla(`
+
     <div class="card">
 
-      <div
-        style="
-          font-size:6rem;
-          animation: aparecer 0.7s ease;
-        ">
+      <div style="
+        font-size:6rem;
+        animation:aparecer .7s ease;
+      ">
         ⏰
       </div>
 
@@ -1073,7 +1783,7 @@ function mostrarSinRespuesta() {
       </h2>
 
       <p>
-        😭 No resolviste la pregunta.
+        No alcanzaste a responder 😭
       </p>
 
       <h1>
@@ -1081,7 +1791,49 @@ function mostrarSinRespuesta() {
       </h1>
 
       <p>
-        No recibiste puntos.
+        🏆 Total:
+        <strong>${puntos}</strong>
+      </p>
+
+    </div>
+
+  `);
+}
+
+
+/* =========================
+   🎉 CORRECTA
+========================= */
+
+function mostrarPuntosGanados(
+  ganados
+) {
+
+  pantalla(`
+
+    <div class="card">
+
+      <div style="
+        font-size:6rem;
+        animation:aparecer .7s ease;
+      ">
+        🎉
+      </div>
+
+      <h2>
+        ¡CORRECTO!
+      </h2>
+
+      <h1
+        style="
+          animation:puntos .5s ease;
+        "
+      >
+        +${ganados}
+      </h1>
+
+      <p>
+        ⚡ Respondiste a tiempo
       </p>
 
       <p>
@@ -1090,45 +1842,7 @@ function mostrarSinRespuesta() {
       </p>
 
     </div>
-  `);
-}
 
-
-/* =========================
-   💰 PUNTOS GANADOS
-========================= */
-
-function mostrarPuntosGanados(ganados) {
-
-  pantalla(`
-    <div class="card">
-
-      <div
-        style="
-          font-size:6rem;
-          animation: aparecer 0.7s ease;
-        ">
-        🎉
-      </div>
-
-      <h2>
-        ¡Correcto!
-      </h2>
-
-      <h1>
-        +${ganados}
-      </h1>
-
-      <p>
-        🏆 Puntos ganados
-      </p>
-
-      <p>
-        Total:
-        <strong>${puntos}</strong>
-      </p>
-
-    </div>
   `);
 }
 
@@ -1140,22 +1854,19 @@ function mostrarPuntosGanados(ganados) {
 function mostrarIncorrecta() {
 
   pantalla(`
+
     <div class="card">
 
       <div style="
         font-size:6rem;
-        animation: aparecer 0.7s ease;
+        animation:sacudir .5s ease;
       ">
         ❌
       </div>
 
       <h2>
-        ¡Ups!
+        ¡Incorrecto!
       </h2>
-
-      <p>
-        Esa respuesta no era.
-      </p>
 
       <h2>
         +0 puntos
@@ -1167,6 +1878,7 @@ function mostrarIncorrecta() {
       </p>
 
     </div>
+
   `);
 }
 
@@ -1177,123 +1889,173 @@ function mostrarIncorrecta() {
 
 async function finalizarPartida() {
 
-  clearInterval(temporizador);
+  if (finalizando) return;
+
+  finalizando = true;
+
+  clearInterval(
+    temporizador
+  );
+
+  controlandoPreguntas = false;
+
 
   await update(
-    ref(db, "partidas/" + codigo),
+    ref(
+      db,
+      "partidas/" +
+      codigo
+    ),
     {
-      estado: "finalizada"
+      estado: "finalizada",
+      tiempoRestante: 0
     }
   );
+
+
+  /*
+    Esperamos un pequeño momento
+    para que las últimas respuestas
+    terminen de guardarse.
+  */
+
+  await new Promise(
+    resolve =>
+      setTimeout(resolve, 500)
+  );
+
+
+  if (detenerRanking) {
+
+    detenerRanking();
+
+    detenerRanking = null;
+  }
+
 
   mostrarRankingFinal();
 }
 
 
 /* =========================
-   👑 RANKING FINAL ANFITRIÓN
+   🥇 RANKING FINAL
 ========================= */
 
-function mostrarRankingFinal() {
+async function mostrarRankingFinal() {
 
-  get(
-    ref(
-      db,
-      "partidas/" +
-      codigo +
-      "/jugadores"
-    )
-  ).then(snap => {
-
-    const jugadores =
-      Object.values(
-        snap.val() || {}
-      );
-
-    jugadores.sort(
-      (a, b) =>
-        (b.puntos || 0) -
-        (a.puntos || 0)
+  const snap =
+    await get(
+      ref(
+        db,
+        "partidas/" +
+        codigo +
+        "/jugadores"
+      )
     );
 
-    pantalla(`
-      <div class="card">
 
-        <div
-          style="
-            font-size:5rem;
-            animation: aparecer 0.8s ease;
-          ">
-          🏆
-        </div>
+  const jugadores =
+    Object.entries(
+      snap.val() || {}
+    )
+    .map(([id, datos]) => ({
+      id,
+      ...datos
+    }));
 
-        <h1>
-          RANKING FINAL
-        </h1>
 
-        <p>
-          🎉 ¡Partida terminada!
-        </p>
+  jugadores.sort(
+    (a, b) =>
+      Number(b.puntos || 0) -
+      Number(a.puntos || 0)
+  );
 
-        <div id="podio">
 
-          ${jugadores.slice(0, 3)
-            .map((j, i) => `
+  pantalla(`
+
+    <div class="card">
+
+      <div style="
+        font-size:5rem;
+        animation:aparecer .8s ease;
+      ">
+        🏆
+      </div>
+
+      <h1>
+        RANKING FINAL
+      </h1>
+
+      <p>
+        🎉 ¡Partida terminada!
+      </p>
+
+
+      ${
+        jugadores.map((j, i) => `
+
+          <div
+            style="
+              margin:12px 0;
+              padding:16px;
+              border-radius:20px;
+              background:white;
+              color:#5424b8;
+              animation:
+                aparecer
+                .6s ease
+                ${i * .1}s
+                both;
+            "
+          >
 
             <div
               style="
-                margin:15px;
-                padding:20px;
-                border-radius:20px;
-                background:white;
-                color:#5424b8;
-
-                animation:
-                  aparecer
-                  0.8s ease
-                  ${i * 0.6}s
-                  both;
+                font-size:2rem;
               "
             >
 
-              <div style="font-size:4rem">
-
-                ${
-                  ["🥇","🥈","🥉"][i]
-                }
-
-              </div>
-
-              <div
-                style="
-                  font-size:4rem;
-                "
-              >
-                ${j.animal}
-              </div>
-
-              <h2>
-                ${j.nombre}
-              </h2>
-
-              <h3>
-                ${j.puntos || 0}
-                puntos
-              </h3>
+              ${
+                i === 0 ? "🥇" :
+                i === 1 ? "🥈" :
+                i === 2 ? "🥉" :
+                `#${i + 1}`
+              }
 
             </div>
 
-          `).join("")}
+            <div
+              style="
+                font-size:3rem;
+              "
+            >
+              ${j.animal}
+            </div>
 
-        </div>
+            <h2>
+              ${escapar(j.nombre)}
+            </h2>
 
-        <button onclick="location.reload()">
-          🔄 Nueva partida
-        </button>
+            <h3>
+              ${Number(j.puntos || 0)}
+              puntos
+            </h3>
 
-      </div>
-    `);
-  });
+          </div>
+
+        `).join("")
+      }
+
+
+      <button
+        onclick="location.reload()"
+      >
+        🔄 Nueva partida
+      </button>
+
+    </div>
+
+  `);
 }
 
 
@@ -1301,79 +2063,126 @@ function mostrarRankingFinal() {
    🏆 RESULTADO JUGADOR
 ========================= */
 
-function mostrarResultadoJugador() {
+async function mostrarResultadoJugador() {
 
-  get(
-    ref(
-      db,
-      "partidas/" +
-      codigo +
-      "/jugadores"
-    )
-  ).then(snap => {
-
-    const jugadores =
-      Object.values(
-        snap.val() || {}
-      );
-
-    jugadores.sort(
-      (a, b) =>
-        (b.puntos || 0) -
-        (a.puntos || 0)
+  const snap =
+    await get(
+      ref(
+        db,
+        "partidas/" +
+        codigo +
+        "/jugadores"
+      )
     );
 
-    const posicion =
-      jugadores.findIndex(
-        j =>
-          j.nombre === jugador &&
-          j.animal === animal
-      ) + 1;
 
-    let emoji = "🎉";
+  const jugadores =
+    Object.entries(
+      snap.val() || {}
+    )
+    .map(([id, datos]) => ({
+      id,
+      ...datos
+    }));
 
-    if (posicion === 1) emoji = "🥇";
-    if (posicion === 2) emoji = "🥈";
-    if (posicion === 3) emoji = "🥉";
 
-    pantalla(`
-      <div class="card">
+  jugadores.sort(
+    (a, b) =>
+      Number(b.puntos || 0) -
+      Number(a.puntos || 0)
+  );
 
-        <div
-          style="
-            font-size:7rem;
-            animation: aparecer 1s ease;
-          "
-        >
-          ${emoji}
-        </div>
 
-        <h1>
-          ¡Terminaste!
-        </h1>
+  const posicion =
+    jugadores.findIndex(
+      j =>
+        j.id === jugadorID
+    ) + 1;
 
-        <h2>
-          ${animal} ${jugador}
-        </h2>
 
-        <h1>
-          ${puntos}
-        </h1>
+  const jugadorFinal =
+    jugadores.find(
+      j =>
+        j.id === jugadorID
+    );
 
-        <p>
-          🏆 PUNTOS TOTALES
-        </p>
 
-        <h2>
-          Puesto: ${posicion}°
-        </h2>
+  if (jugadorFinal) {
 
-        <p>
-          El anfitrión está viendo
-          el ranking final 👑
-        </p>
+    puntos =
+      Number(
+        jugadorFinal.puntos || 0
+      );
+  }
 
+
+  let emoji = "🎉";
+
+
+  if (posicion === 1) {
+    emoji = "🥇";
+  }
+
+  if (posicion === 2) {
+    emoji = "🥈";
+  }
+
+  if (posicion === 3) {
+    emoji = "🥉";
+  }
+
+
+  pantalla(`
+
+    <div class="card">
+
+      <div style="
+        font-size:7rem;
+        animation:aparecer 1s ease;
+      ">
+        ${emoji}
       </div>
-    `);
-  });
+
+      <h1>
+        ¡PARTIDA TERMINADA!
+      </h1>
+
+      <h2>
+        ${animal}
+        ${escapar(jugador)}
+      </h2>
+
+      <h1
+        style="
+          animation:puntos .7s ease;
+        "
+      >
+        ${puntos}
+      </h1>
+
+      <p>
+        🏆 PUNTOS TOTALES
+      </p>
+
+      <h2>
+        Puesto: ${posicion}°
+      </h2>
+
+      ${
+        posicion === 1
+          ? "<h2>👑 ¡GANASTE!</h2>"
+          : posicion <= 3
+            ? "<h2>🔥 ¡QUEDASTE EN EL PODIO!</h2>"
+            : "<h2>💪 ¡Buen trabajo!</h2>"
+      }
+
+      <p>
+        El anfitrión está viendo
+        el ranking final 👑
+      </p>
+
+    </div>
+
+  `);
 }
+
