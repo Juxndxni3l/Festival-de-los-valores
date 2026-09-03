@@ -1,341 +1,377 @@
-const preguntas = [
-  {
-    pregunta: "¿Qué valor demuestra una persona cuando ayuda a alguien que lo necesita?",
-    opciones: ["Respeto", "Solidaridad", "Envidia", "Egoísmo"],
-    correcta: 1
-  },
-  {
-    pregunta: "¿Qué significa respetar a los demás?",
-    opciones: [
-      "Ignorar sus opiniones",
-      "Tratar a todos con consideración",
-      "Burlarse de ellos",
-      "Hacer siempre lo que uno quiere"
-    ],
-    correcta: 1
-  },
-  {
-    pregunta: "Si encuentras algo que no es tuyo, ¿qué deberías hacer?",
-    opciones: [
-      "Quedártelo",
-      "Esconderlo",
-      "Buscar a su dueño",
-      "Venderlo"
-    ],
-    correcta: 2
-  },
-  {
-    pregunta: "¿Cuál de estos es un ejemplo de responsabilidad?",
-    opciones: [
-      "No hacer las tareas",
-      "Cumplir con tus deberes",
-      "Culpar a otros",
-      "Llegar tarde siempre"
-    ],
-    correcta: 1
-  },
-  {
-    pregunta: "¿Qué valor nos ayuda a decir la verdad?",
-    opciones: ["Honestidad", "Envidia", "Orgullo", "Egoísmo"],
-    correcta: 0
-  }
-];
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  push,
+  update,
+  onValue
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-const personajes = [
-  "🦊",
-  "🐼",
-  "🐯",
-  "🐸",
-  "🐨",
-  "🐱"
-];
+const firebaseConfig = {
+  apiKey: "AIzaSyBwS_AI9_m2P8p3xmNV1HAaFl1E7QHa1uo",
+  authDomain: "el-festival-de-los-valores.firebaseapp.com",
+  databaseURL: "https://el-festival-de-los-valores-default-rtdb.firebaseio.com",
+  projectId: "el-festival-de-los-valores",
+  storageBucket: "el-festival-de-los-valores.firebasestorage.app",
+  messagingSenderId: "519288376721",
+  appId: "1:519288376721:web:a946a536b17ca91e539e30"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const animales = ["🦊", "🐼", "🐯", "🐸", "🐨", "🐱", "🐵", "🐰"];
 
 let jugador = "";
-let personaje = "";
+let animal = "";
+let codigo = "";
+let soyAnfitrion = false;
+let jugadorID = "";
 let preguntaActual = 0;
 let puntos = 0;
 let tiempo = 15;
 let temporizador;
 
-function crearPartida() {
-  document.getElementById("pantalla").innerHTML = `
+const preguntas = [
+  ["Un amigo rompe algo tuyo accidentalmente. ¿Qué haces?", ["Gritarle", "Hablar con él tranquilamente", "Ignorarlo", "Romperle algo"], 1],
+  ["Alguien piensa diferente a ti. ¿Qué demuestra respeto?", ["Escucharlo", "Burlarte", "Interrumpirlo", "Insultarlo"], 0],
+  ["Encuentras dinero en el salón y nadie sabe de quién es. ¿Qué haces?", ["Te lo quedas", "Lo escondes", "Lo entregas al profesor", "Lo gastas"], 2],
+  ["Tu equipo pierde por un error tuyo. ¿Qué haces?", ["Culpas a otro", "Aceptas el error", "Te vas", "Te burlas"], 1],
+  ["Un compañero está siendo excluido. ¿Qué sería solidaridad?", ["Ignorarlo", "Invitarlo a participar", "Reírte", "Decir que se vaya"], 1],
+  ["Prometiste hacer una tarea. ¿Qué valor debes demostrar?", ["Responsabilidad", "Envidia", "Orgullo", "Egoísmo"], 0],
+  ["Alguien te cuenta un secreto importante. ¿Qué haces?", ["Lo publicas", "Lo cuentas a todos", "Respetas su confianza", "Te burlas"], 2],
+  ["¿Cuál acción demuestra empatía?", ["Escuchar cómo se siente alguien", "Ignorarlo", "Juzgarlo", "Burlarte"], 0],
+  ["Si ves una injusticia, ¿qué deberías hacer?", ["Apoyarla", "Ignorarla siempre", "Buscar una solución justa", "Reírte"], 2],
+  ["Un compañero consigue algo que tú querías. ¿Qué actitud es mejor?", ["Felicitarlo", "Enojarte", "Insultarlo", "Quitárselo"], 0],
+  ["¿Qué significa ser honesto?", ["Decir la verdad", "Mentir", "Ocultar siempre la verdad", "Engañar"], 0],
+  ["Si cometes un error, ¿qué demuestra madurez?", ["Negarlo", "Reconocerlo", "Culpar a otro", "Esconderlo"], 1],
+  ["¿Qué valor ayuda a convivir con personas diferentes?", ["Respeto", "Egoísmo", "Envidia", "Burla"], 0],
+  ["Alguien necesita ayuda con una tarea. ¿Qué puedes hacer?", ["Ayudarlo", "Burlarte", "Ignorarlo", "Dañarle el trabajo"], 0],
+  ["¿Qué haces si alguien te habla mientras estás ocupado?", ["Lo escuchas cuando puedas", "Lo insultas", "Lo ignoras siempre", "Le gritas"], 0],
+  ["¿Cuál es una forma correcta de resolver un conflicto?", ["Dialogar", "Golpear", "Insultar", "Huir siempre"], 0],
+  ["Si recibes una crítica, ¿qué puedes hacer?", ["Escucharla y reflexionar", "Insultar", "Enojarte siempre", "Burlarte"], 0],
+  ["¿Qué demuestra tolerancia?", ["Aceptar diferencias", "Obligar a todos a pensar igual", "Burlarse", "Excluir"], 0],
+  ["Un compañero gana justamente. ¿Qué haces?", ["Lo felicitas", "Lo acusas sin razón", "Te burlas", "Le quitas el premio"], 0],
+  ["¿Qué valor está relacionado con cumplir tus compromisos?", ["Responsabilidad", "Envidia", "Egoísmo", "Desprecio"], 0],
+  ["Si ves basura en el colegio, ¿qué actitud ayuda al ambiente?", ["Recogerla o depositarla correctamente", "Tirarla más", "Ignorar siempre", "Esconderla"], 0],
+  ["¿Qué significa cooperar?", ["Trabajar juntos", "Trabajar contra todos", "No participar", "Molestar"], 0],
+  ["Si alguien se equivoca al hablar, ¿qué haces?", ["Lo respetas", "Te burlas", "Lo imitas", "Lo interrumpes"], 0],
+  ["¿Qué valor ayuda a reconocer los sentimientos de otros?", ["Empatía", "Envidia", "Orgullo", "Egoísmo"], 0],
+  ["¿Qué demuestra una persona justa?", ["Trata de manera equilibrada", "Favorece siempre a sus amigos", "Miente", "Excluye"], 0],
+  ["Si tienes una opinión diferente, puedes...", ["Expresarla respetuosamente", "Insultar", "Gritar", "Obligar a todos"], 0],
+  ["¿Qué haces cuando alguien necesita ser escuchado?", ["Prestas atención", "Lo interrumpes", "Te burlas", "Te vas"], 0],
+  ["¿Cuál acción demuestra generosidad?", ["Compartir cuando puedes", "Quedarte todo", "Esconderlo", "Negarte siempre"], 0],
+  ["¿Qué ayuda más a una buena convivencia?", ["Respeto y diálogo", "Insultos", "Mentiras", "Egoísmo"], 0],
+  ["Al terminar un proyecto grupal, ¿qué es correcto?", ["Reconocer el esfuerzo de todos", "Atribuirte todo", "Culpar al equipo", "Ignorar a los demás"], 0]
+];
+
+function pantalla(html) {
+  document.getElementById("pantalla").innerHTML = html;
+}
+
+window.crearPartida = function () {
+  soyAnfitrion = true;
+
+  pantalla(`
     <div class="card">
       <h2>👑 Crear partida</h2>
-      <p>Elige tu personaje</p>
+      <input id="nombre" placeholder="Nombre del anfitrión">
+      <button onclick="crearSala()">🚀 Crear partida</button>
+    </div>
+  `);
+};
 
-      <div id="personajes">
-        ${personajes.map((p, i) => `
-          <button 
+window.crearSala = async function () {
+  jugador = document.getElementById("nombre").value.trim();
+
+  if (!jugador) {
+    alert("Escribe un nombre 😭");
+    return;
+  }
+
+  codigo = Math.floor(100000 + Math.random() * 900000).toString();
+
+  await set(ref(db, "partidas/" + codigo), {
+    estado: "esperando",
+    pregunta: 0,
+    anfitrion: jugador
+  });
+
+  mostrarSalaAnfitrion();
+};
+
+function mostrarSalaAnfitrion() {
+  pantalla(`
+    <div class="card">
+      <h2>👑 SALA</h2>
+      <div class="codigo">${codigo}</div>
+      <p>Comparte este código con los jugadores 📱</p>
+      <div id="listaJugadores">Esperando jugadores...</div>
+
+      <button onclick="empezarPartida()">
+        🚀 EMPEZAR
+      </button>
+    </div>
+  `);
+
+  onValue(ref(db, "partidas/" + codigo + "/jugadores"), snap => {
+    const jugadores = snap.val() || {};
+
+    document.getElementById("listaJugadores").innerHTML =
+      Object.values(jugadores)
+        .map(j => `<p>${j.animal} ${j.nombre}</p>`)
+        .join("") || "Esperando jugadores...";
+  });
+}
+
+window.empezarPartida = async function () {
+  await update(ref(db, "partidas/" + codigo), {
+    estado: "jugando",
+    pregunta: 0
+  });
+
+  iniciarControlPreguntas();
+};
+
+function iniciarControlPreguntas() {
+  mostrarPreguntaAnfitrion();
+
+  setTimeout(() => {
+    if (preguntaActual < preguntas.length - 1) {
+      preguntaActual++;
+      update(ref(db, "partidas/" + codigo), {
+        pregunta: preguntaActual
+      });
+      iniciarControlPreguntas();
+    } else {
+      finalizarPartida();
+    }
+  }, 15000);
+}
+
+function mostrarPreguntaAnfitrion() {
+  const p = preguntas[preguntaActual];
+
+  pantalla(`
+    <div class="card">
+      <h2>👑 Pregunta ${preguntaActual + 1}/30</h2>
+      <h2>${p[0]}</h2>
+      <p>⏱️ 15 segundos</p>
+      <p>Los jugadores están respondiendo...</p>
+    </div>
+  `);
+}
+
+window.unirsePartida = function () {
+  soyAnfitrion = false;
+
+  pantalla(`
+    <div class="card">
+      <h2>🎮 Unirse</h2>
+
+      <input id="nombreJugador" placeholder="Tu nombre">
+
+      <div>
+        ${animales.map((a, i) => `
+          <button
             class="personaje"
-            onclick="seleccionarPersonaje(${i}, this)">
-            ${p}
+            onclick="elegirAnimal(${i}, this)">
+            ${a}
           </button>
         `).join("")}
       </div>
 
-      <input id="nombreJugador" type="text" placeholder="Tu nombre">
+      <input id="codigo" placeholder="Código de partida">
 
-      <button onclick="generarCodigo()">
-        🚀 Crear partida
-      </button>
+      <button onclick="entrar()">🚀 Entrar</button>
     </div>
-  `;
-}
+  `);
+};
 
-function seleccionarPersonaje(indice, boton) {
-  personaje = personajes[indice];
+window.elegirAnimal = function (i, boton) {
+  animal = animales[i];
 
   document.querySelectorAll(".personaje").forEach(b => {
     b.style.transform = "scale(1)";
   });
 
-  boton.style.transform = "scale(1.25)";
-}
+  boton.style.transform = "scale(1.3)";
+};
 
-function generarCodigo() {
+window.entrar = async function () {
   jugador = document.getElementById("nombreJugador").value.trim();
+  codigo = document.getElementById("codigo").value.trim();
 
-  if (jugador === "") {
-    alert("⚠️ Escribe tu nombre");
+  if (!jugador || !codigo || !animal) {
+    alert("Completa todo 😭");
     return;
   }
 
-  if (personaje === "") {
-    alert("⚠️ Elige un personaje");
-    return;
-  }
+  jugadorID = push(ref(db, "partidas/" + codigo + "/jugadores")).key;
 
-  const codigo = Math.floor(100000 + Math.random() * 900000);
+  await set(
+    ref(db, "partidas/" + codigo + "/jugadores/" + jugadorID),
+    {
+      nombre: jugador,
+      animal: animal,
+      puntos: 0
+    }
+  );
 
-  document.getElementById("pantalla").innerHTML = `
+  pantalla(`
     <div class="card">
-      <h2>🎉 ¡Partida creada!</h2>
-
-      <div style="font-size:4rem">${personaje}</div>
-
-      <p>Jugador: <strong>${jugador}</strong></p>
-
-      <p>Código de partida:</p>
-
-      <div class="codigo">${codigo}</div>
-
-      <button onclick="iniciarJuego()">
-        🎮 Iniciar juego
-      </button>
+      <div style="font-size:5rem">${animal}</div>
+      <h2>✅ ¡Entraste!</h2>
+      <p>Hola ${jugador} 👋</p>
+      <p>Esperando al anfitrión...</p>
     </div>
-  `;
+  `);
+
+  escucharPartida();
+};
+
+function escucharPartida() {
+  onValue(ref(db, "partidas/" + codigo), snap => {
+    const partida = snap.val();
+
+    if (!partida) return;
+
+    if (partida.estado === "jugando") {
+      preguntaActual = partida.pregunta;
+      mostrarPreguntaJugador();
+    }
+
+    if (partida.estado === "finalizada") {
+      mostrarEsperaFinal();
+    }
+  });
 }
 
-function unirsePartida() {
-  document.getElementById("pantalla").innerHTML = `
+function mostrarPreguntaJugador() {
+  const p = preguntas[preguntaActual];
+
+  pantalla(`
     <div class="card">
-      <h2>🎮 Unirse a partida</h2>
 
-      <input id="nombreJugador" type="text" placeholder="Tu nombre">
+      <div style="font-size:4rem">${animal}</div>
 
-      <input id="codigoPartida" type="number" placeholder="Código">
+      <p>Pregunta ${preguntaActual + 1} de 30</p>
 
-      <button onclick="entrarPartida()">
-        🚀 Entrar
-      </button>
+      <div id="tiempo" style="font-size:2rem">
+        ⏱️ 15
+      </div>
+
+      <h2>${p[0]}</h2>
+
+      ${p[1].map((op, i) => `
+        <button onclick="responderJugador(${i})">
+          ${op}
+        </button>
+      `).join("")}
+
     </div>
-  `;
-}
-
-function entrarPartida() {
-  jugador = document.getElementById("nombreJugador").value.trim();
-  const codigo = document.getElementById("codigoPartida").value.trim();
-
-  if (jugador === "" || codigo === "") {
-    alert("⚠️ Completa los campos");
-    return;
-  }
-
-  document.getElementById("pantalla").innerHTML = `
-    <div class="card">
-      <h2>✅ ¡Te uniste!</h2>
-      <p>Jugador: <strong>${jugador}</strong></p>
-      <p>Código: <strong>${codigo}</strong></p>
-
-      <div style="font-size:4rem">🎮</div>
-
-      <p>Esperando para comenzar...</p>
-
-      <button onclick="iniciarJuego()">
-        ▶️ Comenzar
-      </button>
-    </div>
-  `;
-}
-
-function iniciarJuego() {
-  preguntaActual = 0;
-  puntos = 0;
-
-  mostrarPregunta();
-}
-
-function mostrarPregunta() {
-  clearInterval(temporizador);
-
-  if (preguntaActual >= preguntas.length) {
-    mostrarResultado();
-    return;
-  }
-
-  const pregunta = preguntas[preguntaActual];
+  `);
 
   tiempo = 15;
 
-  document.getElementById("pantalla").innerHTML = `
-    <div class="card">
-
-      <div style="font-size:3rem">${personaje}</div>
-
-      <p>Pregunta ${preguntaActual + 1} de ${preguntas.length}</p>
-
-      <h2>${pregunta.pregunta}</h2>
-
-      <div id="tiempo"
-           style="font-size:2rem;font-weight:bold;margin:15px">
-        ⏱️ ${tiempo}
-      </div>
-
-      <div class="opciones">
-        ${pregunta.opciones.map((opcion, i) => `
-          <button onclick="responder(${i})">
-            ${opcion}
-          </button>
-        `).join("")}
-      </div>
-
-      <p style="margin-top:15px">
-        🏆 Puntos: ${puntos}
-      </p>
-
-    </div>
-  `;
+  clearInterval(temporizador);
 
   temporizador = setInterval(() => {
-
     tiempo--;
 
-    const contador = document.getElementById("tiempo");
+    const t = document.getElementById("tiempo");
 
-    if (contador) {
-      contador.innerHTML = `⏱️ ${tiempo}`;
-    }
+    if (t) t.innerHTML = `⏱️ ${tiempo}`;
 
     if (tiempo <= 0) {
       clearInterval(temporizador);
-
-      alert("⏰ ¡Se acabó el tiempo!");
-
-      preguntaActual++;
-
-      mostrarPregunta();
+      responderJugador(-1);
     }
-
   }, 1000);
 }
 
-function responder(opcion) {
+window.responderJugador = async function (respuesta) {
   clearInterval(temporizador);
 
-  const pregunta = preguntas[preguntaActual];
+  const correcta = preguntas[preguntaActual][2];
 
-  if (opcion === pregunta.correcta) {
-
-    const puntosTiempo = tiempo * 10;
-
-    puntos += 100 + puntosTiempo;
-
-    alert("✅ ¡Correcto! +" + (100 + puntosTiempo) + " puntos");
-
-  } else {
-
-    alert("❌ Incorrecto 😭");
-
+  if (respuesta === correcta) {
+    puntos += 100 + tiempo * 10;
   }
 
-  preguntaActual++;
+  await update(
+    ref(db, "partidas/" + codigo + "/jugadores/" + jugadorID),
+    {
+      puntos: puntos
+    }
+  );
 
-  setTimeout(() => {
-    mostrarPregunta();
-  }, 300);
+  pantalla(`
+    <div class="card">
+      <div style="font-size:4rem">${animal}</div>
+      <h2>✅ Respuesta enviada</h2>
+      <p>Espera la siguiente pregunta...</p>
+    </div>
+  `);
+};
+
+async function finalizarPartida() {
+  await update(ref(db, "partidas/" + codigo), {
+    estado: "finalizada"
+  });
+
+  mostrarRanking();
 }
 
-function mostrarResultado() {
-
-  document.getElementById("pantalla").innerHTML = `
+function mostrarEsperaFinal() {
+  pantalla(`
     <div class="card">
-
-      <div style="font-size:5rem">${personaje}</div>
-
-      <h2>🏆 ¡Partida terminada!</h2>
-
-      <h1>${puntos}</h1>
-
-      <p>Puntos obtenidos</p>
-
-      <button onclick="mostrarRanking()">
-        📊 Ver ranking
-      </button>
-
-      <button onclick="location.reload()">
-        🔄 Jugar otra vez
-      </button>
-
+      <div style="font-size:5rem">${animal}</div>
+      <h2>🎉 ¡Terminaste!</h2>
+      <p>El anfitrión está viendo el ranking 🏆</p>
     </div>
-  `;
+  `);
 }
 
 function mostrarRanking() {
+  get(ref(db, "partidas/" + codigo + "/jugadores")).then(snap => {
 
-  const jugadores = [
-    {
-      nombre: jugador,
-      personaje: personaje,
-      puntos: puntos
-    },
-    {
-      nombre: "Valentina",
-      personaje: "🐼",
-      puntos: Math.max(0, puntos - 120)
-    },
-    {
-      nombre: "Santiago",
-      personaje: "🦊",
-      puntos: Math.max(0, puntos - 250)
-    }
-  ];
+    const jugadores = Object.values(snap.val() || {});
 
-  jugadores.sort((a, b) => b.puntos - a.puntos);
+    jugadores.sort((a, b) => b.puntos - a.puntos);
 
-  document.getElementById("pantalla").innerHTML = `
-    <div class="card">
+    pantalla(`
+      <div class="card">
+        <h1>🏆 RANKING FINAL</h1>
 
-      <h2>🏆 RANKING</h2>
+        <div id="podio">
+          ${jugadores.slice(0, 3).map((j, i) => `
+            <div style="
+              margin:15px;
+              padding:20px;
+              border-radius:20px;
+              background:white;
+              color:#5424b8;
+              animation: aparecer 0.7s ease ${i * 0.4}s both;
+            ">
+              <div style="font-size:3rem">
+                ${["🥇", "🥈", "🥉"][i]}
+              </div>
 
-      ${jugadores.map((j, i) => `
-        <div style="
-          padding:15px;
-          margin:10px 0;
-          border-radius:15px;
-          background:#f1f1f1;
-          font-size:1.2rem;
-        ">
-          <strong>${i + 1}°</strong>
-          ${j.personaje}
-          ${j.nombre}
-          — ${j.puntos} pts
+              <div style="font-size:3rem">${j.animal}</div>
+
+              <strong>${j.nombre}</strong>
+
+              <p>${j.puntos} puntos</p>
+            </div>
+          `).join("")}
         </div>
-      `).join("")}
 
-      <button onclick="location.reload()">
-        🏠 Volver al inicio
-      </button>
-
-    </div>
-  `;
+        <h2>🎉 ¡Gracias por participar!</h2>
+      </div>
+    `);
+  });
 }
+
